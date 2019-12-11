@@ -1,0 +1,10 @@
+<div *ngIf="transaction">
+    <h2><b>Transaction id: {{transaction.id}}</b></h2>
+    <h2><b>Sender id: {{transaction.senderId}}</b></h2>
+    <h2><b>Reciever id: {{transaction.recieverId}}</b></h2>
+    <h2><b>Amount: {{transaction.amount}}</b></h2>
+    <h2><b>Note: {{transaction.note}}</b></h2>
+    <h2><b>Type: {{transaction.type}}</b></h2>
+</div>
+
+<button (click) = "goBack()"> <b>BACK</b></button>

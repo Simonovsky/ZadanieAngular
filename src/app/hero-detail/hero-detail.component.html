@@ -1,0 +1,39 @@
+<div *ngIf="hero">
+ 
+  <h2>{{hero.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="hero.name" placeholder="name"/>
+    </label>
+    <button (click) = "save()"> save </button>
+  </div>
+  <div>
+      <p>Balance: {{hero.balance}}</p>
+  </div>
+
+
+
+  <button (click)="goBack()">go back</button>
+  <button routerLink="/transactions/{{hero.id}}">New transaction</button>
+  
+  <h2> TRANSACTIONS </h2>
+  <ul class="transactions">
+    <ng-container *ngFor="let transaction of transactions">
+      <li *ngIf = " transaction.recieverId === hero.id || transaction.senderId === hero.id ">
+
+        <a *ngIf = "transaction.senderId === hero.id" routerLink = "/transactions-detail/{{transaction.id}}">
+          <span class="badge" >Reciever id: {{transaction.recieverId}}  </span> Note: {{transaction.note}}
+        </a> 
+          <b *ngIf = "transaction.senderId === hero.id" class = "amount_negative" style="float: right">Amount: {{transaction.amount}}€</b>
+
+        <a *ngIf = "transaction.senderId !== hero.id" routerLink = "/transactions-detail/{{transaction.id}}">
+          <span class="badge">Sender id: {{transaction.senderId}}  </span> Note: {{transaction.note}}
+        </a>
+          <b *ngIf = "transaction.senderId !== hero.id" class = "amount_positive" style="float: right">Amount: {{transaction.amount}}€</b>
+
+      </li>  
+      
+    </ng-container>
+  </ul>
+</div>
